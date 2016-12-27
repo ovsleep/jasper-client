@@ -74,6 +74,7 @@ class Brain(object):
                         self._logger.debug("Silence mode")
                         self.silence = True
                         self.silenceUntil = datetime.now() + timedelta(hours=1)
+                        return
                     if module.isValid(text):
                         self._logger.debug("'%s' is a valid phrase for module " +
                                         "'%s'", text, module.__name__)
