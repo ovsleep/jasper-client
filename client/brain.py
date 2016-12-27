@@ -59,6 +59,14 @@ class Brain(object):
                      else 0, reverse=True)
         return modules
 
+    def isSilentMode():
+        return self.silence == False or self.silenceUntil < datetime.now()
+    
+    def enterSilentMode():
+        self.silence = True
+        self.silenceUntil = datetime.now() + timedelta(minutes=1)
+        self._logger.debug("Silent mode until %s", self.silenceUntil)
+
     def query(self, texts):
         """
         Passes user input to the appropriate module, testing it against
@@ -71,9 +79,7 @@ class Brain(object):
             for module in self.modules:
                 for text in texts:
                     if bool(re.search(r'silencio\b', text, re.IGNORECASE)):
-                        self._logger.debug("Silence mode")
-                        self.silence = True
-                        self.silenceUntil = datetime.now() + timedelta(hours=1)
+                        self.enterSilentMode()
                         return
                     if module.isValid(text):
                         self._logger.debug("'%s' is a valid phrase for module " +
