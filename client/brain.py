@@ -70,7 +70,8 @@ class Brain(object):
         if not self.silence:
             for module in self.modules:
                 for text in texts:
-                    if bool(re.search(r'\bsilencio\b', text, re.IGNORECASE)):
+                    if bool(re.search(r'silencio\b', text, re.IGNORECASE)):
+                        self._logger.debug("Silence mode")
                         self.silence = True
                         self.silenceUntil = datetime.now() + timedelta(hours=1)
                     if module.isValid(text):
