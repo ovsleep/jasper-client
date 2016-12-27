@@ -2,7 +2,8 @@
 import logging
 import pkgutil
 import jasperpath
-
+import re
+from datetime import datetime, timedelta
 
 class Brain(object):
 
@@ -23,6 +24,8 @@ class Brain(object):
         self.profile = profile
         self.modules = self.get_modules()
         self._logger = logging.getLogger(__name__)
+        self.silence = False
+        self.silenceUntil = datetime.now()
 
     @classmethod
     def get_modules(cls):
@@ -64,23 +67,29 @@ class Brain(object):
         Arguments:
         text -- user input, typically speech, to be parsed by a module
         """
-        for module in self.modules:
-            for text in texts:
-                if module.isValid(text):
-                    self._logger.debug("'%s' is a valid phrase for module " +
-                                       "'%s'", text, module.__name__)
-                    try:
-                        module.handle(text, self.mic, self.profile)
-                    except Exception:
-                        self._logger.error('Failed to execute module',
-                                           exc_info=True)
-                        self.mic.say("Lo siento. Ocurrió un error " +
-                                     "con esa operación. Intente de nuevo más tarde.")
-                    else:
-                        self._logger.debug("Handling of phrase '%s' by " +
-                                           "module '%s' completed", text,
-                                           module.__name__)
-                    finally:
-                        return
-        self._logger.debug("No module was able to handle any of these " +
-                           "phrases: %r", texts)
+        if !self.silence:
+            for module in self.modules:
+                for text in texts:
+                    if bool(re.search(r'\bsilencio\b', text, re.IGNORECASE)):
+                        self.silence = True
+                        self.silenceUntil = datetime.now() + timedelta(hours=1)
+                    if module.isValid(text):
+                        self._logger.debug("'%s' is a valid phrase for module " +
+                                        "'%s'", text, module.__name__)
+                        try:
+                            module.handle(text, self.mic, self.profile)
+                        except Exception:
+                            self._logger.error('Failed to execute module',
+                                            exc_info=True)
+                            self.mic.say("Lo siento. Ocurrió un error " +
+                                        "con esa operación. Intente de nuevo más tarde.")
+                        else:
+                            self._logger.debug("Handling of phrase '%s' by " +
+                                            "module '%s' completed", text,
+                                            module.__name__)
+                        finally:
+                            return
+            self._logger.debug("No module was able to handle any of these " +
+                            "phrases: %r", texts)
+        else:
+            self._logger.debug("The brain is silenced")
