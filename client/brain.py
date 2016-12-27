@@ -59,10 +59,10 @@ class Brain(object):
                      else 0, reverse=True)
         return modules
 
-    def isSilentMode():
+    def isSilentMode(self):
         return self.silence == False or self.silenceUntil < datetime.now()
     
-    def enterSilentMode():
+    def enterSilentMode(self):
         self.silence = True
         self.silenceUntil = datetime.now() + timedelta(minutes=1)
         self._logger.debug("Silent mode until %s", self.silenceUntil)
