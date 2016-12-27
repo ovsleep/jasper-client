@@ -60,7 +60,7 @@ class Brain(object):
         return modules
 
     def isSilentMode(self):
-        return self.silence == False or self.silenceUntil > datetime.now()
+        return self.silence == True or self.silenceUntil > datetime.now()
     
     def enterSilentMode(self):
         self.silence = True
