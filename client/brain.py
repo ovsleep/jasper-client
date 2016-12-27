@@ -67,7 +67,7 @@ class Brain(object):
         Arguments:
         text -- user input, typically speech, to be parsed by a module
         """
-        if !self.silence:
+        if not self.silence:
             for module in self.modules:
                 for text in texts:
                     if bool(re.search(r'\bsilencio\b', text, re.IGNORECASE)):
