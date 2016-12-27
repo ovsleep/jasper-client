@@ -61,7 +61,7 @@ class Brain(object):
 
     def isSilentMode(self):
         if self.silence:
-            if: self.silenceUntil > datetime.now()
+            if self.silenceUntil > datetime.now():
                 return True
             else:
                 self.silence = False
