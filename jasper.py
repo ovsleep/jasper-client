@@ -108,7 +108,7 @@ class Jasper(object):
 
     def run(self):
         if 'first_name' in self.config:
-            salutation = ("How can I be of service, %s?"
+            salutation = ("Cómo puedo servirle, %s?"
                           % self.config["first_name"])
         else:
             salutation = "How can I be of service?"
