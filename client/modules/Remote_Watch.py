@@ -9,7 +9,7 @@ def handle(text, mic, profile):
 	url = "http://192.168.1.101:9589/api/remote"
 	response = 'Ok, '
 	device = ''
-	if bool(re.search(r'\bpel[ií]culas\b', text, re.IGNORECASE)):
+	if bool(re.search(r'\bpel[iíIÍ]culas\b', text, re.IGNORECASE)):
 		device = 'pi'
 		response += ' prendo la PI'
 	if bool(re.search(r'\btele\b', text, re.IGNORECASE)):
