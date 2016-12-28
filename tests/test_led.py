@@ -22,6 +22,6 @@ class TestLed(unittest.TestCase):
         time.sleep(3)
         myLed.switch(False, 'GREEN')
     
-    def testBlink(self)
+    def testBlink(self):
         myLed = led.Led()
         myLed.blink(Red, 6)
