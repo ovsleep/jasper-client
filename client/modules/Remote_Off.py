@@ -4,6 +4,7 @@ import re
 import sys
 
 WORDS = ["APAGAR, TELE, AIRE, TODO, CHAU"]
+PRIORITY = 100
 
 def handle(text, mic, profile):
 	url = "http://192.168.1.101:9589/api/remote"
@@ -27,6 +28,7 @@ def handle(text, mic, profile):
 		
 	requests.post(url, json=action)
 	mic.say(response)
-
+	
 def isValid(text):
-	return bool(re.search(r'apagar\b', text, re.IGNORECASE)) or bool(re.search(r'chau\b', text, re.IGNORECASE))
+    print text
+	return bool(re.search(r'\bapagar\b', text, re.IGNORECASE)) or bool(re.search(r'\bchau\b', text, re.IGNORECASE))
