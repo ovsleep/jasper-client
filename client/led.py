@@ -12,6 +12,6 @@ class Led:
         GPIO.setup(24,GPIO.OUT)
         self.colors = {'RED':18, 'BLUE':23, 'GREEN':24}
 
-    def switch(self, mode, color)
+    def switch(self, mode, color):
         pin = self.colors[color]
         GPIO.output(pin, mode)
