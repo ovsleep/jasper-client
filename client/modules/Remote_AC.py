@@ -29,9 +29,9 @@ def handle(text, mic, profile):
 		action = { 'command': 'ac', 'data' : {'mode': mode, 'temp': temp} }
 
 	requests.post(url, json=action)
-	mic.say(response)
-	mic.say(temp)
-	mic.say('grados')
+	mic.say(response + `temp` + grados)
+	# mic.say(temp)
+	# mic.say('grados')
 		
 def isValid(text):
 	return bool(re.search(r'\baire\b', text, re.IGNORECASE))
