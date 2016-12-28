@@ -10,6 +10,7 @@ def handle(text, mic, profile):
 	response = 'Ok, '
 	device = ''
 	if bool(re.search(r'\bpel[iíIÍ]culas\b', text, re.IGNORECASE)):
+		print 'pi matched'
 		device = 'pi'
 		response += ' prendo la PI'
 	if bool(re.search(r'\btele\b', text, re.IGNORECASE)):
