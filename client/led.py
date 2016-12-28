@@ -15,3 +15,11 @@ class Led:
     def switch(self, mode, color):
         pin = self.colors[color]
         GPIO.output(pin, mode)
+
+    def blink(self, color, times=3):
+        pin = self.colors[color]
+        for i in range(times):
+            time.sleep(0.3)
+            GPIO.output(pin, True)
+            time.sleep(0.3)
+            GPIO.output(pin, False)
