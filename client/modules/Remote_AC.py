@@ -25,15 +25,13 @@ def handle(text, mic, profile):
 		else:
 			mode = 'cold'
 			response += 'aire frío a '
-		
-		_logger = logging.getLogger(__name__)
-		_logger.info(temp)
-		
-		response += temp + ' grados.'
 
 		action = { 'command': 'ac', 'data' : {'mode': mode, 'temp': temp} }
+
 	requests.post(url, json=action)
 	mic.say(response)
+	mic.say(temp)
+	mic.say('grados')
 		
 def isValid(text):
 	return bool(re.search(r'\baire\b', text, re.IGNORECASE))
