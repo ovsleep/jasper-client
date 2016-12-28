@@ -18,10 +18,10 @@ def handle(text, mic, profile):
 		device =  'ac'
 		response += 'apago el aire'
 	if bool(re.search(r'\btodo\b', text, re.IGNORECASE)):
-		response += '¡adiós!'
+		response += '¡chau!'
 		device =  'all'
 	if bool(re.search(r'\bchau\b', text, re.IGNORECASE)):
-		response += '¡adiós!'
+		response += '¡chau!'
 		device = 'all'
 		
 	action = { 'command': 'off', 'data' : {'device': device} }
