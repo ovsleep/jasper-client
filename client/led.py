@@ -19,7 +19,7 @@ class Led:
     def blink(self, color, times=3):
         pin = self.colors[color]
         for i in range(times):
-            time.sleep(0.3)
+            time.sleep(0.1)
             GPIO.output(pin, True)
-            time.sleep(0.3)
+            time.sleep(0.1)
             GPIO.output(pin, False)
