@@ -47,6 +47,7 @@ class AbstractTTSEngine(object):
     Generic parent class for all speakers
     """
     __metaclass__ = ABCMeta
+    silentMode = False
 
     @classmethod
     def get_config(cls):
@@ -65,12 +66,15 @@ class AbstractTTSEngine(object):
 
     def __init__(self, **kwargs):
         self._logger = logging.getLogger(__name__)
+        self.silentMode = False
 
     @abstractmethod
     def say(self, phrase, *args):
         pass
 
     def play(self, filename):
+        if self.silentMode:
+            return
         # FIXME: Use platform-independent audio-output here
         # See issue jasperproject/jasper-client#188
         #cmd = ['aplay', '-D', 'plughw:1,0', str(filename)]

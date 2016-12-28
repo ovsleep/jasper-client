@@ -35,6 +35,7 @@ class Mic:
                           "can usually be safely ignored.")
         self._audio = pyaudio.PyAudio()
         self._logger.info("Initialization of PyAudio completed.")
+        self._silentMode = False
 
     def __del__(self):
         self._audio.terminate()
@@ -260,3 +261,6 @@ class Mic:
         # alter phrase before speaking
         phrase = alteration.clean(phrase)
         self.speaker.say(phrase)
+
+    def setSilentMode(self, mode):
+        self.speaker.silentMode = mode
