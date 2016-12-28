@@ -74,19 +74,20 @@ class AbstractTTSEngine(object):
 
     def play(self, filename):
         if self.silentMode:
-            return
-        # FIXME: Use platform-independent audio-output here
-        # See issue jasperproject/jasper-client#188
-        #cmd = ['aplay', '-D', 'plughw:1,0', str(filename)]
-        cmd = ['omxplayer', '-o', 'local', str(filename)]
-        self._logger.debug('Executing %s', ' '.join([pipes.quote(arg)
-                                                     for arg in cmd]))
-        with tempfile.TemporaryFile() as f:
-            subprocess.call(cmd, stdout=f, stderr=f)
-            f.seek(0)
-            output = f.read()
-            if output:
-                self._logger.debug("Output was: '%s'", output)
+            self._logger.info("Silent mode ON")
+        else:
+            # FIXME: Use platform-independent audio-output here
+            # See issue jasperproject/jasper-client#188
+            #cmd = ['aplay', '-D', 'plughw:1,0', str(filename)]
+            cmd = ['omxplayer', '-o', 'local', str(filename)]
+            self._logger.debug('Executing %s', ' '.join([pipes.quote(arg)
+                                                        for arg in cmd]))
+            with tempfile.TemporaryFile() as f:
+                subprocess.call(cmd, stdout=f, stderr=f)
+                f.seek(0)
+                output = f.read()
+                if output:
+                    self._logger.debug("Output was: '%s'", output)
 
 
 class AbstractMp3TTSEngine(AbstractTTSEngine):
