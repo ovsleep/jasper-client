@@ -5,19 +5,19 @@ import time
 class TestLed(unittest.TestCase):
 
     def testRed(self):
-        led = led.Led()
-        led.switch(True, 'RED')
+        myLed = led.Led()
+        myLed.switch(True, 'RED')
         time.sleep(3)
-        led.switch(False, 'RED')
+        myLed.switch(False, 'RED')
 
     def testBlue(self):
-        led = led.Led()
-        led.switch(True, 'BLUE')
+        myLed = led.Led()
+        myLed.switch(True, 'BLUE')
         time.sleep(3)
-        led.switch(False, 'BLUE')
+        myLed.switch(False, 'BLUE')
 
     def testGreen(self):
-        led = led.Led()
-        led.switch(True, 'GREEN')
+        myLed = led.Led()
+        myLed.switch(True, 'GREEN')
         time.sleep(3)
-        led.switch(False, 'GREEN')
+        myLed.switch(False, 'GREEN')
