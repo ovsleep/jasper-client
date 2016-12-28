@@ -56,8 +56,8 @@ class Brain(object):
         modules.sort(key=lambda mod: mod.PRIORITY if hasattr(mod, 'PRIORITY')
                      else 0, reverse=True)
         return modules
-
-  def query(self, texts):
+        
+    def query(self, texts):
         """
         Passes user input to the appropriate module, testing it against
         each candidate module's isValid function.
