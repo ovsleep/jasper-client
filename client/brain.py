@@ -67,9 +67,6 @@ class Brain(object):
         """
         for module in self.modules:
             for text in texts:
-                if bool(re.search(r'silencio\b', text, re.IGNORECASE)):
-                    self.enterSilentMode()
-                    return
                 if module.isValid(text):
                     self._logger.debug("'%s' is a valid phrase for module " +
                                     "'%s'", text, module.__name__)
