@@ -24,4 +24,4 @@ class TestLed(unittest.TestCase):
     
     def testBlink(self):
         myLed = led.Led()
-        myLed.blink(Red, 6)
+        myLed.blink('RED', 6)
