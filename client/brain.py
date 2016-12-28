@@ -4,6 +4,7 @@ import pkgutil
 import jasperpath
 import re
 from datetime import datetime, timedelta
+from led import Led
 
 class Brain(object):
 
@@ -24,6 +25,7 @@ class Brain(object):
         self.profile = profile
         self.modules = self.get_modules()
         self._logger = logging.getLogger(__name__)
+        self.led = Led()
 
     @classmethod
     def get_modules(cls):
@@ -71,12 +73,13 @@ class Brain(object):
                     self._logger.debug("'%s' is a valid phrase for module " +
                                     "'%s'", text, module.__name__)
                     try:
+                        self.led.blink('BLUE', 2)
                         module.handle(text, self.mic, self.profile)
                     except Exception:
                         self._logger.error('Failed to execute module',
                                         exc_info=True)
-                        self.mic.say("Lo siento. Ocurrió un error " +
-                                    "con esa operación. Intente de nuevo más tarde.")
+                        self.mic.say("Lo siento. Algo salió mal.")
+                        self.led.blink('RED')
                     else:
                         self._logger.debug("Handling of phrase '%s' by " +
                                         "module '%s' completed", text,
