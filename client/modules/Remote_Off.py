@@ -18,7 +18,7 @@ def handle(text, mic, profile):
 		device =  'ac'
 		response += 'apago el aire'
 	if bool(re.search(r'\btodo\b', text, re.IGNORECASE)):
-    	response += 'adios!'
+		response += 'adios!'
 		device =  'all'
 	if bool(re.search(r'\bchau\b', text, re.IGNORECASE)):
     	response += 'adios!'
@@ -30,5 +30,5 @@ def handle(text, mic, profile):
 	mic.say(response)
 	
 def isValid(text):
-    print text
+	print text
 	return bool(re.search(r'\bapagar\b', text, re.IGNORECASE)) or bool(re.search(r'\bchau\b', text, re.IGNORECASE))
