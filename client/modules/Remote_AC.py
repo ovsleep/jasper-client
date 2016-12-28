@@ -2,6 +2,7 @@
 import requests
 import re
 import sys
+import logging
 
 WORDS = ["AIRE, CALIENTE, FRIO, APAGAR"]
 
@@ -24,6 +25,9 @@ def handle(text, mic, profile):
 		else:
 			mode = 'cold'
 			response += 'aire frío a '
+		
+		_logger = logging.getLogger(__name__)
+		_logger.info(temp)
 		
 		response += temp + ' grados.'
 
