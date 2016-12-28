@@ -21,7 +21,7 @@ def handle(text, mic, profile):
 		response += 'adios!'
 		device =  'all'
 	if bool(re.search(r'\bchau\b', text, re.IGNORECASE)):
-    	response += 'adios!'
+		response += 'adios!'
 		device = 'all'
 		
 	action = { 'command': 'off', 'data' : {'device': device} }
