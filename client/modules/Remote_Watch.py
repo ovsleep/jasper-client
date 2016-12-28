@@ -6,9 +6,6 @@ import sys
 WORDS = ["VER, PELICULAS, TELE, CABLE, XBOX, CHROME"]
 
 def handle(text, mic, profile):
-    text = text.encode('utf8')
-	print text
-
 	url = "http://192.168.1.101:9589/api/remote"
 	response = 'Ok, '
 	device = ''
