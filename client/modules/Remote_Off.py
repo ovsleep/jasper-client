@@ -30,5 +30,4 @@ def handle(text, mic, profile):
 	mic.say(response)
 	
 def isValid(text):
-	print text
 	return bool(re.search(r'\bapagar\b', text, re.IGNORECASE)) or bool(re.search(r'\bchau\b', text, re.IGNORECASE))
