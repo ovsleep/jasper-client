@@ -10,7 +10,7 @@ def handle(text, mic, profile):
 	response = 'Ok, '
 	device = ''
 	print text
-	if bool(re.search(r'\bpel[iíIÍ]culas\b'.encode('utf8'), text, re.IGNORECASE)):
+	if bool(re.search(r'\bpel[iíIÍ]culas\b', text, flags=re.IGNORECASE|re.U)):
 		print 'pi matched'
 		device = 'pi'
 		response += ' prendo la PI'
@@ -29,7 +29,7 @@ def handle(text, mic, profile):
 		
 	action = { 'command': 'watch', 'data' : {'device': device} }
 	requests.post(url, json=action)
-	mic.say(response.encode('utf8'))
+	mic.say(response)
 
 def isValid(text):
     return bool(re.search(r'\bver\b', text, re.IGNORECASE))
