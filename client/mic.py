@@ -9,6 +9,7 @@ import audioop
 import pyaudio
 import alteration
 import jasperpath
+from led import Led
 
 
 class Mic:
@@ -36,6 +37,7 @@ class Mic:
         self._audio = pyaudio.PyAudio()
         self._logger.info("Initialization of PyAudio completed.")
         self._silentMode = False
+        self.led = Led()
 
     def __del__(self):
         self._audio.terminate()
@@ -211,6 +213,7 @@ class Mic:
         if THRESHOLD is None:
             THRESHOLD = self.fetchThreshold()
 
+        self.led.switch(True, 'GREEN')
         self.speaker.play(jasperpath.data('audio', 'beep_hi.wav'))
 
         # prepare recording stream
@@ -241,6 +244,7 @@ class Mic:
                 break
 
         self.speaker.play(jasperpath.data('audio', 'beep_lo.wav'))
+        self.led.switch(False, 'GREEN')
 
         # save the audio data
         stream.stop_stream()
