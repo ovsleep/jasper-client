@@ -69,7 +69,7 @@ class Brain(object):
         """
         for module in self.modules:
             for text in texts:
-                text = text.encode('utf8')
+                #text = text.encode('utf8')
                 if module.isValid(text):
                     self._logger.debug("'%s' is a valid phrase for module " +
                                     "'%s'", text, module.__name__)

@@ -2,6 +2,7 @@
 import requests
 import re
 import sys
+from re import UNICODE
 
 WORDS = ["VER, PELICULAS, TELE, CABLE, XBOX, CHROME"]
 
@@ -9,8 +10,8 @@ def handle(text, mic, profile):
 	url = "http://192.168.1.101:9589/api/remote"
 	response = 'Ok, '
 	device = ''
-	print text
-	if bool(re.search(r'\bpel[iíIÍ]culas\b', text, flags=re.IGNORECASE|re.U)):
+	print text.encode('utf8')
+	if bool(re.search(r'\bpel[iíIÍ]culas\b'.decode('utf8'), text, flags=re.IGNORECASE|re.U|UNICODE)):
 		print 'pi matched'
 		device = 'pi'
 		response += ' prendo la PI'
