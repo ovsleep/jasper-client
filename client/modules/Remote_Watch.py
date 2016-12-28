@@ -33,5 +33,4 @@ def handle(text, mic, profile):
 	mic.say(response.encode('utf8'))
 
 def isValid(text):
-    text = text.encode('utf8')
-	return bool(re.search(r'\bver\b', text, re.IGNORECASE))
+    return bool(re.search(r'\bver\b', text, re.IGNORECASE))
